@@ -1,0 +1,89 @@
+<script src="../vue.js"></script>
+<link rel="stylesheet" href="style.css" />
+
+<div id="exercise">
+  <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+  <div>
+    <button @click="startEffect">Start Effect</button>
+    <div id="effect" :class="myClass"></div>
+  </div>
+  <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+  <div style="background-color: green" :style="[myStyle, {height: 100 + 'px'}]">
+    I got no class :(
+  </div>
+  <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+  <div>
+    <input type="text" v-model="ex" />
+    <div id="effect" :class="ex"></div>
+  </div>
+  <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+  <div>
+    <input type="text" v-model="bool1" />
+    <input type="text" v-model="bool2" />
+    <div :class="[bool1, {bold2: trueOrFalse}]">d</div>
+  </div>
+  <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+  <div>
+    <input type="text" v-model="customStyle" />
+    <div id="effect" :style="{backgroundColor: this.customStyle}"></div>
+  </div>
+  <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+  <div>
+    <button v-on:click="startProgress">Start Progress</button>
+    <div class="bold2" :style="{width: myWidth + '%'}"></div>
+  </div>
+</div>
+
+<script>
+  new Vue({
+    el: "#exercise",
+
+    data: {
+      highlightEffect: false,
+      shrinkEffect: false,
+      ex: "",
+      bool1: "",
+      bool2: "",
+      customStyle: "",
+      myWidth: 0
+    },
+    computed: {
+      myClass: function() {
+        console.log(this.highlightEffect);
+        return {
+          highlight: this.highlightEffect,
+          shrink: this.shrinkEffect
+        };
+      },
+      myStyle: function() {
+        return {
+          width: 10 + "px"
+        };
+      },
+      exClass: function() {
+        return this.ex;
+      },
+      trueOrFalse: function() {
+        return this.bool2 == "true";
+      }
+    },
+    methods: {
+      startEffect: function() {
+        this.highlightEffect = true;
+        console.log(this.highlightEffect);
+        var vm = this;
+        setInterval(function() {
+          vm.highlightEffect = !vm.highlightEffect;
+          vm.shrinkEffect = !vm.shrinkEffect;
+          console.log("Change!");
+        }, 500);
+      },
+      startProgress: function() {
+        var vm = this;
+        setInterval(function() {
+          vm.myWidth += 1;
+        }, 100);
+      }
+    }
+  });
+</script>
