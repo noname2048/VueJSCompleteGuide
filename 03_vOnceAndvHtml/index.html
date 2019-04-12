@@ -1,0 +1,28 @@
+<!-- if template is not only text, that can cross-site attack -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <hi v-once>{{ title }}</hi>
+  <p>{{ sayHello() }}</p>
+  <hi v-once>{{ title }}</hi>
+  <hr />
+  <p>{{ finishedLink }}</p>
+  <p v-html="finishedLink"></p>
+</div>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      title: "Hello World!",
+      link: "https://google.com",
+      finishedLink: '<a href="http://google.com">Google</a>'
+    },
+    methods: {
+      sayHello: function() {
+        this.title = "Hello!";
+        return this.title;
+      }
+    }
+  });
+</script>

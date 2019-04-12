@@ -1,0 +1,22 @@
+<script src="../vue.js"></script>
+
+<div id="app">
+  <p>{{ sayHello() }}</p>
+  <p><a href="{{ link }}">Google</a></p>
+  <p><a v-bind:href="link">Google2</a></p>
+</div>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      title: "Hello World!",
+      link: "https://google.com"
+    },
+    methods: {
+      sayHello: function() {
+        return this.title;
+      }
+    }
+  });
+</script>

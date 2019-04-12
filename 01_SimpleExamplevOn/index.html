@@ -1,0 +1,24 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- if new Vue... scripts here, not working! -->
+
+<div id="app">
+  <input type="text" v-on:input="changeTitle" />
+  <p>{{ title }}</p>
+</div>
+
+<!-- after dom is ready... (after loading dom) -->
+<!-- https://stackoverflow.com/questions/29484431/vue-warn-cannot-find-element -->
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      title: "Hello World!"
+    },
+    methods: {
+      changeTitle: function(event) {
+        this.title = event.target.value;
+      }
+    }
+  });
+</script>
