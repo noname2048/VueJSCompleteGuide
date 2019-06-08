@@ -113,3 +113,11 @@
 1. `<p style="white-space: pre">` 로 지정하면 멀티 랑니이 그대로 출력된다.
 1. option 에서 selected 보다는 상위 v-model이 우선시 되어 오버라이팅이 된다.
 1. `:value="userData.email" @input="userData.email = $event.target.value"` 는 v-model 과 같다.
+1. v-model 은 v-bind:value 와 v-on:input 두개를 사용해서 만든 것과 같다.
+1. v-bind를 props로 value로 주고, emit을 'input'으로 해서 작동한다!
+
+#### section 12.
+
+1. 5 Hooks
+1. bind, inserted, update, compenentUPdated, unbind
+1.
